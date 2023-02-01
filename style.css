@@ -1,6 +1,7 @@
-/* #main {
-  position: relative;
-} */
+html,
+body {
+  overflow: hidden;
+}
 
 .container {
   text-align: center;
