@@ -1,0 +1,28 @@
+/* #main {
+  position: relative;
+} */
+
+.container {
+  text-align: center;
+}
+
+.target {
+  width: 100px;
+}
+#mame {
+  width: 100px;
+}
+
+#tama {
+  width: 20px;
+  position: absolute;
+}
+
+@keyframes oniwasoto {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(100px);
+  }
+}
