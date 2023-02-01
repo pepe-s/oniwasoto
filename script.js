@@ -52,16 +52,21 @@ function createTama() {
   return tama;
 }
 
+let count = 0;
 function doOniwasoto() {
   const mainDiv = document.getElementById("main");
   const tama = createTama();
   mainDiv.appendChild(tama);
-  const durationMs = 500;
+  const durationMs = 300;
   tama.animate(
-    [{ transform: "translateY(-50px)" }, { transform: "translateY(-500px)" }],
+    [{ transform: "translateY(-50px)" }, { transform: "translateY(-400px)" }],
     { fill: "forwards", duration: durationMs }
   );
   setTimeout(() => {
     tama.remove();
+    document
+      .getElementById("targetImg")
+      .animate([{ opacity: 1 }, { opacity: 0 }], { duration: 50 });
+    document.getElementById("counter").innerText = ++count;
   }, durationMs);
 }
