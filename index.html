@@ -6,14 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./style.css" />
+
     <script type="text/javascript" src="./script.js"></script>
   </head>
   <body>
+    <dialog id="startDialog">
+      <div class="dialogDiv">
+        <p>鬼に豆をぶつけてポイントを稼ごう！</p>
+      </div>
+      <div class="dialogDiv">
+        <label id="fileSelectorLabel">
+          <input type="file" id="fileSelector" />鬼の画像を変更
+        </label>
+      </div>
+      <div class="dialogDiv">
+        <button id="startButton" class="c-button">Start</button>
+      </div>
+    </dialog>
+    <dialog id="finishDialog">
+      <div class="dialogDiv">
+        <p></p>
+      </div>
+      <div class="dialogDiv button02">
+        <a
+          href="https://twitter.com/share"
+          class="twitter-share-button"
+          data-url="https://pepe-s.github.io/oniwasoto/"
+          data-text="鬼退治ゲーム"
+          data-lang="ja"
+          data-hashtags="#節分"
+          style="text-decoration: none"
+        >
+          ツイートする
+        </a>
+      </div>
+      <div class="button02 dialogDiv">
+        <a href="" style="text-decoration: none">最初に戻る</a>
+      </div>
+    </dialog>
     <div class="container">
       <h1>鬼は外ゲーム</h1>
-      <label id="fileSelectorLabel">
-        <input type="file" id="fileSelector" />鬼の画像を変更
-      </label>
     </div>
     <div class="container">
       <p id="counter">グハハハ</p>

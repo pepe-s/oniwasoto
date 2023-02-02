@@ -7,14 +7,9 @@ window.onload = () => {
   console.log("豆を上にスワイプして鬼にぶつけよう！");
 
   const targetImgEl = document.getElementById("targetImg");
-  targetImgEl.addEventListener("click", () => {
-    console.log("aaa");
-  });
   const mameImgEl = document.getElementById("mame");
-  mameImgEl.addEventListener("click", () => {
-    console.log("aaa");
-  });
 
+  // スワイプで豆を投げる
   let startPoint = 0;
   let flg = false;
   mameImgEl.addEventListener("touchstart", (event) => {
@@ -27,32 +22,42 @@ window.onload = () => {
     const diff = startPoint - currentPoint;
     if (Math.abs(diff) > 50 && flg) {
       if (startPoint > currentPoint) {
-        console.log("up");
         doOniwasoto();
-      } else {
-        console.log("down");
       }
       flg = false;
     }
   });
 
+  // 鬼の画像を変更できる
   const fileSelector = document.getElementById("fileSelector");
   fileSelector.addEventListener("change", () => {
-    let imgFile;
     if (fileSelector.value !== "") {
       targetImgEl.src = window.URL.createObjectURL(fileSelector.files[0]);
     }
   });
 
-  setInterval(() => {
-    const timer = document.getElementById("timer");
-    if (gameEnd === false) {
-      timer.innerText = `残り時間: ${--remainingTime}秒`;
-      if (remainingTime === 0) {
-        gameEnd = true;
+  const startDialog = document.getElementById("startDialog");
+  startDialog.open = true;
+  const finishDialog = document.getElementById("finishDialog");
+
+  const startButton = document.getElementById("startButton");
+  startButton.addEventListener("click", () => {
+    startDialog.open = false;
+
+    setInterval(() => {
+      const timer = document.getElementById("timer");
+      if (gameEnd === false) {
+        timer.innerText = `残り時間: ${--remainingTime}秒`;
+        if (remainingTime === 0) {
+          gameEnd = true;
+          finishDialog.children[0].innerText = `${
+            document.getElementById("counter").innerText
+          }ポイントでした`;
+          finishDialog.open = true;
+        }
       }
-    }
-  }, 1000);
+    }, 1000);
+  });
 };
 
 // 投げる豆を生成する
