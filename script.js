@@ -1,4 +1,11 @@
+const GAME_TIME_MS = 1500;
+let gameEnd = false;
+let remainingTime = 15;
+
 window.onload = () => {
+  // コンソールにメッセージを出力
+  console.log("豆を上にスワイプして鬼にぶつけよう！");
+
   const targetImgEl = document.getElementById("targetImg");
   targetImgEl.addEventListener("click", () => {
     console.log("aaa");
@@ -28,6 +35,24 @@ window.onload = () => {
       flg = false;
     }
   });
+
+  const fileSelector = document.getElementById("fileSelector");
+  fileSelector.addEventListener("change", () => {
+    let imgFile;
+    if (fileSelector.value !== "") {
+      targetImgEl.src = window.URL.createObjectURL(fileSelector.files[0]);
+    }
+  });
+
+  setInterval(() => {
+    const timer = document.getElementById("timer");
+    if (gameEnd === false) {
+      timer.innerText = `残り時間: ${--remainingTime}秒`;
+      if (remainingTime === 0) {
+        gameEnd = true;
+      }
+    }
+  }, 1000);
 };
 
 // 投げる豆を生成する
@@ -43,6 +68,9 @@ function createTama() {
 // 鬼は外をする
 let count = 0;
 function doOniwasoto() {
+  if (gameEnd) {
+    return;
+  }
   const mainDiv = document.getElementById("main");
   const tama = createTama();
   mainDiv.appendChild(tama);
@@ -56,10 +84,10 @@ function doOniwasoto() {
   setTimeout(() => {
     // 投げた豆を削除
     tama.remove();
+    document.getElementById("counter").innerText = ++count;
     // 鬼にダメージを与えるアニメーション
     document
       .getElementById("targetImg")
       .animate([{ opacity: 1 }, { opacity: 0 }], { duration: 50 });
-    document.getElementById("counter").innerText = ++count;
   }, durationMs);
 }
