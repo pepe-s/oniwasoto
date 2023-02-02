@@ -3,6 +3,17 @@ body {
   overflow: hidden;
 }
 
+#fileSelectorLabel {
+  padding: 10px 40px;
+  color: #ffffff;
+  background-color: #384878;
+  cursor: pointer;
+}
+
+input[type="file"] {
+  display: none;
+}
+
 .container {
   text-align: center;
 }
